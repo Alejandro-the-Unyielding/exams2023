@@ -115,6 +115,7 @@ public class Test {
 		
 	}
 
+	@SuppressWarnings("unused")
 	@org.junit.Test
 	public void testBounds() {
 		Timetable table = this.factory.empty()
