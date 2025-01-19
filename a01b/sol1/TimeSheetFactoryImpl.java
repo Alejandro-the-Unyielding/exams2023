@@ -1,4 +1,4 @@
-package a01b.sol1;
+package sol1;
 
 import java.util.*;
 import java.util.stream.*;
@@ -44,6 +44,7 @@ public class TimeSheetFactoryImpl implements TimeSheetFactory {
     }
 
 
+    @SuppressWarnings("unused")
     @Override
     public TimeSheet flat(int numActivities, int numDays, int hours) {
         var activities = createActivities(numActivities);

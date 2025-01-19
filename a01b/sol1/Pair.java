@@ -1,4 +1,4 @@
-package a01b.sol1;
+package sol1;
 
 import java.util.Objects;
 
@@ -30,6 +30,7 @@ public class Pair<E1,E2> {
 		return Objects.hash(e1, e2);
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {

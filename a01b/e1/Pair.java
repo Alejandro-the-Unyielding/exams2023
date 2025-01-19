@@ -1,4 +1,4 @@
-package a01b.e1;
+package e1;
 
 import java.util.Objects;
 
@@ -41,6 +41,7 @@ public class Pair<E1,E2> {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
+		@SuppressWarnings("rawtypes")
 		Pair other = (Pair) obj;
 		return Objects.equals(e1, other.e1) && Objects.equals(e2, other.e2);
 	}

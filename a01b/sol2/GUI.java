@@ -1,4 +1,4 @@
-package a01b.sol2;
+package sol2;
 
 import javax.swing.*;
 import java.util.*;
@@ -6,6 +6,7 @@ import java.util.List;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("unused")
 public class GUI extends JFrame {
     
     private static final long serialVersionUID = -6218820567019985015L;
