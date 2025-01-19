@@ -47,6 +47,7 @@ public class TimetableFactoryImpl implements TimetableFactory {
         }
     }
 
+    @SuppressWarnings("unused")
     @Override
     public Timetable empty() {
         return new TimetableData(Set.of(), Set.of(), (a,d) -> 0);
