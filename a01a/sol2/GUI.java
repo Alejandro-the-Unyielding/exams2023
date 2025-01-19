@@ -2,7 +2,6 @@ package sol2;
 
 import javax.swing.*;
 import java.util.*;
-import java.util.List;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
