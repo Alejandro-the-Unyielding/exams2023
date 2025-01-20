@@ -1,9 +1,10 @@
-package a02a.sol2;
+package sol2;
 
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("unused")
 public class LogicImpl implements Logic {
 
     private final List<Position> dynamic = new LinkedList<>();
