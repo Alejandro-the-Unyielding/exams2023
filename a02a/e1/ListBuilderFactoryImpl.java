@@ -1,19 +1,21 @@
-package sol1;
+package e1;
 
-import java.util.*;
-import java.util.stream.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 public class ListBuilderFactoryImpl implements ListBuilderFactory {
 
-    // a utility function, essentially a flatMap for builders
-    private <R,T> ListBuilder<R> FlatMap(ListBuilder<T> builder, Function<T, ListBuilder<R>> fun) {
+
+     private <R,T> ListBuilder<R> FlatMap(ListBuilder<T> builder, Function<T, ListBuilder<R>> fun) { //try and understand
         return new ListBuilderImpl<>(builder.build().stream().flatMap(t -> fun.apply(t).build().stream()));
     }
 
-    // A builder can just be an immutable wrapper of a list!
-    private class ListBuilderImpl<T> implements ListBuilder<T> {
-        private final List<T> list;
+    private class ListBuilderImpl<T> implements ListBuilder<T>{
+
+        private List<T> list;
 
         public ListBuilderImpl(Stream<T> stream){
             this.list = stream.toList();
@@ -27,6 +29,7 @@ public class ListBuilderFactoryImpl implements ListBuilderFactory {
         @Override
         public ListBuilder<T> concat(ListBuilder<T> lb) {
             return add(lb.build());
+
         }
 
         @Override
@@ -38,15 +41,17 @@ public class ListBuilderFactoryImpl implements ListBuilderFactory {
         public ListBuilder<T> reverse() {
             var l2 = new ArrayList<>(list);
             Collections.reverse(l2);
-            return new ListBuilderImpl<>(l2.stream());
+            return new ListBuilderImpl<>(l2.stream()); 
         }
 
         @Override
         public List<T> build() {
             return this.list;
-        }
+        }}
 
-    }
+
+
+
 
     @Override
     public <T> ListBuilder<T> empty() {
@@ -61,14 +66,15 @@ public class ListBuilderFactoryImpl implements ListBuilderFactory {
     @Override
     public <T> ListBuilder<T> fromList(List<T> list) {
         return new ListBuilderImpl<>(list.stream());
-    }
 
+    }
 
     @Override
-    public <T> ListBuilder<T> join(T start,  T stop, List<ListBuilder<T>> list) {
+    public <T> ListBuilder<T> join(T start, T stop, List<ListBuilder<T>> builderList) {
         return this
-            .fromElement(start)
-            .add(list.stream().flatMap(lb -> lb.build().stream()).toList())
-            .add(List.of(stop));
+        .fromElement(start)
+        .add(builderList.stream().flatMap(lb -> lb.build().stream()).toList())
+        .add(List.of(stop));//understand better
     }
+
 }
