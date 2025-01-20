@@ -1,4 +1,4 @@
-package a02c.sol2;
+package sol2;
 
 public class Test {
 

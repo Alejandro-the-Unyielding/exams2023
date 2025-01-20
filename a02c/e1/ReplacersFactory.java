@@ -1,4 +1,4 @@
-package a02c.e1;
+package e1;
 
 import java.util.*;
 

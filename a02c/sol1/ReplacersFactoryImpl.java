@@ -1,4 +1,4 @@
-package a02c.sol1;
+package sol1;
 
 import java.util.*;
 import java.util.function.*;
@@ -34,6 +34,7 @@ public class ReplacersFactoryImpl implements ReplacersFactory {
         };
     }
 
+    @SuppressWarnings("unused")
     @Override
     public <T> Replacer<T> noReplacement() {
         return (input, t) -> generalReplacer(t, ()->List.of(), l ->List.of()).replace(input, t);
