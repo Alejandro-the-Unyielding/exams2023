@@ -46,8 +46,9 @@ public class GUI extends JFrame {
         }
 
         this.cells.entrySet().stream()
-        .filter(entry -> entry.getValue()
-        .equals(new Position(2, 2)))
+        .filter(entry -> entry
+        .getValue().x() == WIDTH && 
+         entry.getValue().y() == random)
         .findFirst()
         .get()
         .getKey()
