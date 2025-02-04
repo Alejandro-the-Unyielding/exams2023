@@ -1,4 +1,4 @@
-package a04.sol2;
+package sol2;
 
 import java.util.*;
 import java.util.stream.Collectors;

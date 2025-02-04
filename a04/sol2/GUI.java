@@ -1,4 +1,4 @@
-package a04.sol2;
+package sol2;
 
 import javax.swing.*;
 import java.util.*;
@@ -19,6 +19,7 @@ public class GUI extends JFrame {
         JPanel panel = new JPanel(new GridLayout(size,size));
         this.getContentPane().add(panel);
         
+        @SuppressWarnings("unused")
         ActionListener al = e -> {
             var jb = (JButton)e.getSource();
             if (this.logic.hit(this.cells.get(jb))){
