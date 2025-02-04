@@ -9,71 +9,44 @@ public class GUI extends JFrame {
     
     private static final long serialVersionUID = -6218820567019985015L;
     private final Map<JButton, Position> cells = new HashMap<>();
-    private final int DONE = 1;
-    private final int random = new Random().nextInt(HEIGHT);
-    private Logic logic;
-
+    private final Logic logic;
     
     public GUI(int width, int height) {
-        this.logic = new LogicImple(width, height);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(70*width, 70*height);
+        this.logic = new LogicImple(width, height);
         
-        JPanel panel = new JPanel(new GridLayout(width,height));
+        JPanel panel = new JPanel(new GridLayout(height, width));
         this.getContentPane().add(panel);
         
         ActionListener al = e -> {
             var jb = (JButton)e.getSource();
-        	var pos = this.cells.get(jb);
-            var hit = logic.hit(pos);
-            if(hit){
-                System.exit(DONE);
+            this.logic.hit(this.cells.get(jb));
+            if (this.logic.isOver()){
+                System.exit(0);
             }
-            else{
-                redraw();
-            }
-
+            this.redraw();
         };
                 
         for (int i=0; i<height; i++){
             for (int j=0; j<width; j++){
-            	var pos = new Position(i, j);
-                final JButton jb = new JButton();
-                this.cells.put(jb, pos);
+            	final JButton jb = new JButton();
+                this.cells.put(jb, new Position(j,i));
                 jb.addActionListener(al);
                 panel.add(jb);
             }
         }
-
-        this.cells.entrySet().stream()
-        .filter(entry -> entry
-        .getValue().x() == WIDTH && 
-         entry.getValue().y() == random)
-        .findFirst()
-        .get()
-        .getKey()
-        .setText("o");
-
-        
-        logic.getMark(this.cells.entrySet().stream()
-        .filter(entry -> entry.getKey().getText().equals("o"))
-        .findFirst()
-        .get()
-        .getValue());
-
-
+        this.redraw();
         this.setVisible(true);
-
     }
 
-        private void redraw(){
-
-            var trajectory = logic.Trajectory();
-            trajectory.forEach(pos ->{
-                this.cells.entrySet().stream().filter(entry -> entry.getValue().equals(pos)).findFirst().get().getKey().setText("o");
-            });
-
-        
+    private void redraw() {
+        for (var entry: this.cells.entrySet()){
+            entry.getKey().setText(
+                this.logic.isMarked(entry.getValue()) 
+                    ? "*" 
+                    : this.logic.getGoal().equals(entry.getValue()) ? "o" : " ");
+        }
     }
-
+    
 }

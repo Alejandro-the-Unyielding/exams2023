@@ -1,13 +1,12 @@
 package e2;
 
-import java.util.ArrayList;
-
 public interface Logic {
 
-    boolean hit (Position pos);
+    void hit(Position position);
 
-    void getMark(Position pos);
+    boolean isMarked(Position position);
 
-    ArrayList<Position> Trajectory();
+    Position getGoal();
 
+    boolean isOver();
 }

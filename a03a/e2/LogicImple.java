@@ -1,50 +1,61 @@
 package e2;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Random;
+import java.util.Set;
 
 public class LogicImple implements Logic{
     private final int width;
     private final int height;
-    private ArrayList<Position> marks = new ArrayList<>();
+    private final Set<Position> marked = new HashSet<>();
+    private final Random random = new Random();
     private Position BullsEye;
 
 
     LogicImple(final int width, final int height){
         this.width = Objects.requireNonNull(width);
         this.height = Objects.requireNonNull(height);
+        this.resetMarks();
+        this.BullsEye = new Position(this.width-1, random.nextInt(this.height));
+    }
+
+    private void resetMarks() {
+        this.marked.clear();
     }
 
     @Override
-    public boolean hit(Position pos) {
+    public void hit(Position pos) {
+
+        this.resetMarks();
+
+        this.marked.add(pos);
 
         var arrow = pos;
-
-        while(arrow.x() != width - 1){
-            if(arrow.y() == height - 1){
-                this.marks.add(arrow);
-                arrow = new Position(arrow.x() + 1, arrow.y() - 1);
-            }
-            else if(arrow.y() == 0){
-                this.marks.add(arrow);
-                arrow = new Position(arrow.x() + 1, arrow.y() + 1);
+        var yDir = -1;
+        for(int x = pos.x() + 1 ; x<this.width; x++){
+            arrow = new Position(x, arrow.y() + yDir);
+            this.marked.add(arrow);
+            if(arrow.y() == 0 || arrow.y() == this.height -1){
+                yDir *= -1;
             }
         }
 
-        return this.marks.contains(BullsEye);
-
-
     }
 
     @Override
-    public void getMark(Position pos) {
-        this.BullsEye = pos;
-
+    public boolean isMarked(Position position) {
+        return this.marked.contains(position);
     }
 
     @Override
-    public ArrayList<Position> Trajectory() {
-        return this.marks;
+    public boolean isOver() {
+        return this.marked.contains(this.BullsEye);
+    }
+
+    @Override
+    public Position getGoal() {
+        return this.BullsEye;
     }
 
 }
