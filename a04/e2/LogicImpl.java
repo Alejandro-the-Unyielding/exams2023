@@ -6,6 +6,7 @@ import java.util.Set;
 
 public class LogicImpl implements Logic {
 
+    @SuppressWarnings("unused")
     private int width;
     private Position start;
     private final Random random = new Random();
@@ -20,9 +21,7 @@ public class LogicImpl implements Logic {
 
     @Override
     public boolean isOver() {
-
-
-
+            return false;
 
     }
 
