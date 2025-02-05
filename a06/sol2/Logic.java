@@ -1,4 +1,4 @@
-package a06.sol2;
+package sol2;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package a06.e1;
+package e1;
 
 import static org.junit.Assert.*;
 

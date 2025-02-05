@@ -1,4 +1,4 @@
-package a06.sol1;
+package sol1;
 
 import java.util.Iterator;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.function.BiFunction;
 import java.util.function.*;
 import java.util.stream.Stream;
 
+@SuppressWarnings("unused")
 public class ZipCombinerFactoryImpl implements ZipCombinerFactory {
 
     /**
