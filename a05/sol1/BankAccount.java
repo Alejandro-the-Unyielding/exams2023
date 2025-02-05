@@ -1,4 +1,4 @@
-package a05.sol1;
+package sol1;
 
 /**
  * An interface to model a bankaccount, holding a certain non-negative amount of money (balance)

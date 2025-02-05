@@ -1,4 +1,4 @@
-package a05.e1;
+package e1;
 
 /**
  * An abstract class defining a template for various possible implementations. Specifically, deposit and withdraw methods

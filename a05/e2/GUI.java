@@ -1,4 +1,4 @@
-package a05.e2;
+package e2;
 
 import javax.swing.*;
 import java.util.*;

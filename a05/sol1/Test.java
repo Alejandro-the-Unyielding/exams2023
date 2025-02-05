@@ -1,9 +1,10 @@
-package a05.sol1;
+package sol1;
 
 import static org.junit.Assert.*;
 
 import java.util.*;
 
+@SuppressWarnings("unused")
 public class Test {
 
 	/*

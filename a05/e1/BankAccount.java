@@ -1,4 +1,4 @@
-package a05.e1;
+package e1;
 
 /**
  * An interface to model a bankaccount, holding a certain non-negative amount of money (balance)
